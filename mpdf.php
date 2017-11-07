@@ -17071,27 +17071,27 @@ class mPDF
 			/* -- END BACKGROUNDS -- */
 
 			//================================================================
-			$y = $cont_y + $bbox_top + $bbox_mt + $bbox_bt + $bbox_pt;
-			$h = $cont_h - $bbox_top - $bbox_mt - $bbox_bt - $bbox_pt - $bbox_pb - $bbox_bb - $bbox_mb - $bbox_bottom;
-			$x = $cont_x + $bbox_left + $bbox_ml + $bbox_bl + $bbox_pl;
-			$w = $cont_w - $bbox_left - $bbox_ml - $bbox_bl - $bbox_pl - $bbox_pr - $bbox_br - $bbox_mr - $bbox_right;
+			$y = $cont_y + (float)$bbox_top + $bbox_mt + $bbox_bt + $bbox_pt;
+			$h = $cont_h - (float)$bbox_top - $bbox_mt - $bbox_bt - $bbox_pt - $bbox_pb - $bbox_bb - $bbox_mb - (float)$bbox_bottom;
+			$x = $cont_x + (float)$bbox_left + $bbox_ml + $bbox_bl + $bbox_pl;
+			$w = $cont_w - (float)$bbox_left - $bbox_ml - $bbox_bl - $bbox_pl - $bbox_pr - $bbox_br - $bbox_mr - (float)$bbox_right;
 			// Set (temporary) values for x y w h to do first paint, if values are auto
 			if ($inner_h === 'auto' && $bbox_top === 'auto') {
 				$y = $cont_y + $bbox_mt + $bbox_bt + $bbox_pt;
-				$h = $cont_h - ($bbox_bottom + $bbox_mt + $bbox_mb + $bbox_bt + $bbox_bb + $bbox_pt + $bbox_pb);
+				$h = $cont_h - ((float)$bbox_bottom + $bbox_mt + $bbox_mb + $bbox_bt + $bbox_bb + $bbox_pt + $bbox_pb);
 			} elseif ($inner_h === 'auto' && $bbox_bottom === 'auto') {
-				$y = $cont_y + $bbox_top + $bbox_mt + $bbox_bt + $bbox_pt;
-				$h = $cont_h - ($bbox_top + $bbox_mt + $bbox_mb + $bbox_bt + $bbox_bb + $bbox_pt + $bbox_pb);
+				$y = $cont_y + (float)$bbox_top + $bbox_mt + $bbox_bt + $bbox_pt;
+				$h = $cont_h - ((float)$bbox_top + $bbox_mt + $bbox_mb + $bbox_bt + $bbox_bb + $bbox_pt + $bbox_pb);
 			}
 			if ($inner_w === 'auto' && $bbox_left === 'auto') {
 				$x = $cont_x + $bbox_ml + $bbox_bl + $bbox_pl;
-				$w = $cont_w - ($bbox_right + $bbox_ml + $bbox_mr + $bbox_bl + $bbox_br + $bbox_pl + $bbox_pr);
+				$w = $cont_w - ((float)$bbox_right + $bbox_ml + $bbox_mr + $bbox_bl + $bbox_br + $bbox_pl + $bbox_pr);
 			} elseif ($inner_w === 'auto' && $bbox_right === 'auto') {
-				$x = $cont_x + $bbox_left + $bbox_ml + $bbox_bl + $bbox_pl;
-				$w = $cont_w - ($bbox_left + $bbox_ml + $bbox_mr + $bbox_bl + $bbox_br + $bbox_pl + $bbox_pr);
+				$x = $cont_x + (float)$bbox_left + $bbox_ml + $bbox_bl + $bbox_pl;
+				$w = $cont_w - ((float)$bbox_left + $bbox_ml + $bbox_mr + $bbox_bl + $bbox_br + $bbox_pl + $bbox_pr);
 			}
-			$bbox_y = $cont_y + $bbox_top + $bbox_mt;
-			$bbox_x = $cont_x + $bbox_left + $bbox_ml;
+			$bbox_y = $cont_y + (float)$bbox_top + $bbox_mt;
+			$bbox_x = $cont_x + (float)$bbox_left + $bbox_ml;
 			$saved_block1 = $this->blk[1];
 			unset($p);
 			unset($pb);
@@ -17116,13 +17116,13 @@ class mPDF
 					$bbox_right = $cont_w - $bbox_left - $bbox_ml - $bbox_bl - $bbox_pl - $inner_w - $bbox_pr - $bbox_br - $bbox_ml;
 				} elseif ($bbox_left === 'auto') {
 					$bbox_left = $cont_w - $bbox_ml - $bbox_bl - $bbox_pl - $inner_w - $bbox_pr - $bbox_br - $bbox_ml - $bbox_right;
-					$bbox_x = $cont_x + $bbox_left + $bbox_ml;
+					$bbox_x = $cont_x + (float)$bbox_left + $bbox_ml;
 					$inner_x = $bbox_x + $bbox_bl + $bbox_pl;
 					$x = $inner_x;
 				}
 				$w = $inner_w;
-				$bbox_y = $cont_y + $bbox_top + $bbox_mt;
-				$bbox_x = $cont_x + $bbox_left + $bbox_ml;
+				$bbox_y = $cont_y + (float)$bbox_top + $bbox_mt;
+				$bbox_x = $cont_x + (float)$bbox_left + $bbox_ml;
 			}
 
 			if ($inner_h === 'auto') { // do a first write
@@ -17153,7 +17153,7 @@ class mPDF
 							$inner_h = $cont_h - $bbox_top - $bbox_mt - $bbox_bt - $bbox_pt - $bbox_pb - $bbox_bb - $bbox_mb - $bbox_bottom;
 						}
 					}
-					$bbox_y = $cont_y + $bbox_top + $bbox_mt;
+					$bbox_y = $cont_y + (float)$bbox_top + $bbox_mt;
 					$inner_y = $bbox_y + $bbox_bt + $bbox_pt;
 					$y = $inner_y;
 				} elseif ($bbox_bottom === 'auto') {
@@ -17166,13 +17166,13 @@ class mPDF
 							$inner_h = $cont_h - $bbox_top - $bbox_mt - $bbox_bt - $bbox_pt - $bbox_pb - $bbox_bb - $bbox_mb - $bbox_bottom;
 						}
 					}
-					$bbox_y = $cont_y + $bbox_top + $bbox_mt;
+					$bbox_y = $cont_y + (float)$bbox_top + $bbox_mt;
 					$inner_y = $bbox_y + $bbox_bt + $bbox_pt;
 					$y = $inner_y;
 				}
 				$h = $inner_h;
-				$bbox_y = $cont_y + $bbox_top + $bbox_mt;
-				$bbox_x = $cont_x + $bbox_left + $bbox_ml;
+				$bbox_y = $cont_y + (float)$bbox_top + $bbox_mt;
+				$bbox_x = $cont_x + (float)$bbox_left + $bbox_ml;
 			}
 			$inner_w = $w;
 			$inner_h = $h;
